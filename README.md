@@ -1,4 +1,4 @@
-# Social-Media-Analytics
+# Protein Sequencing
 
 
 hw6_social.py - The skeleton code of the Protein Sequencing is ready in this python file.
