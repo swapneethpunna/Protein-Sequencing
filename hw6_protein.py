@@ -286,7 +286,7 @@ createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None)
 Parameters: list of strs ; list of floats ; str ; list of floats ; str ; [optional] list of strs
 Returns: None
 '''
-def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList):
+def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     import matplotlib.pyplot as plt
     import numpy as np
     w=0.4
@@ -329,6 +329,16 @@ Parameters: no parameters
 Returns: None
 '''
 def runFullProgram():
+    humanproteins=synthesizeProteins("data/human_p53.txt","data/codon_table.json")
+    elephantproteins=synthesizeProteins("data/elephant_p53.txt","data/codon_table.json")
+    x=commonProteins(humanproteins,elephantproteins)
+    y=findAminoAcidDifferences(humanproteins,elephantproteins,0.005)
+    displayTextResults(x,y)
+    labels=makeAminoAcidLabels(humanproteins,elephantproteins)
+    f1=setupChartData(labels,humanproteins)
+    f2=setupChartData(labels,elephantproteins)
+    edges=makeEdgeList(labels,y)
+    createChart(labels, f1, "Human", f2, "Elephant", edgeList=edges)
     return
 
 
@@ -340,7 +350,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testMakeEdgeList()
+    # test.testMakeEdgeList()
 
     ## Uncomment these for Week 2 ##
     
@@ -351,9 +361,9 @@ if __name__ == "__main__":
     
 
     ## Uncomment these for Week 3 ##
-    """
+    
     print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
     test.week3Tests()
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
-    """
+    
