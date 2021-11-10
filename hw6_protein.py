@@ -288,6 +288,7 @@ Returns: None
 '''
 def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     import matplotlib.pyplot as plt
+
     return
 
 
@@ -298,7 +299,16 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    return
+    lst=[]
+    words=[]
+    for i in range(len(biggestDiffs)):
+        words.append(biggestDiffs[i][0])
+    for i in range(len(labels)):
+        if labels[i] in words:
+            lst.append("black")
+        else:
+            lst.append("white")
+    return lst
 
 
 '''
@@ -319,7 +329,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testSetupChartData()
+    test.testMakeEdgeList()
 
     ## Uncomment these for Week 2 ##
     
